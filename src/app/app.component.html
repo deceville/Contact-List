@@ -12,7 +12,7 @@
 
 <ul *ngFor="let contact of contacts | async">
   <li (click)='getContact(contact.id)'>
-    <strong>{{ contact.data.firstName}} {{ contact.data.secondName }} (<a href="#" (click)="deletePost(contact.id)">delete</a>)</strong>
+    <strong>{{ contact.data.firstName}} {{ contact.data.secondName }} (<a href="#" (click)="deleteContact(contact.id)">delete</a>)</strong>
     <br>
     {{contact.data.phoneNum}}
     <br>

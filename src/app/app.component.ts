@@ -59,12 +59,12 @@ export class AppComponent {
   }
 
   addContact(){
-    this.afs.collection('contacts').doc('contact-id').set({'firstName': this.firstName, 'secondName': this.secondName, 'phoneNum': this.phoneNum, 'mobileNum': this.mobileNum, 'email': this.email, 'homeAddress': this.homeAddress, 'streetName': this.streetName, 'city': this.city, 'province': this.province, 'country': this.country, });
+    this.afs.collection('contacts').add({'firstName': this.firstName, 'secondName': this.secondName, 'phoneNum': this.phoneNum, 'mobileNum': this.mobileNum, 'email': this.email, 'homeAddress': this.homeAddress, 'streetName': this.streetName, 'city': this.city, 'province': this.province, 'country': this.country });
   }
 
   getContact(contactId){
     this.contactDoc = this.afs.doc('contacts/' + contactId);
-    this.contacts = this.contactsCol.valueChanges();
+    this.contacts = this.contactDoc.valueChanges();
   }
 
   deleteContact(contactId){
