@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
-var firebaseConfig: {
+var firebaseConfig = {
   apiKey: "AIzaSyC9LBMJRD8lm0tJuHb9ilFcJnWZTNnF2i8",
   authDomain: "contact-list-fe1da.firebaseapp.com",
   databaseURL: "https://contact-list-fe1da.firebaseio.com",

@@ -66,4 +66,8 @@ export class AppComponent {
     this.contactDoc = this.afs.doc('contacts/' + contactId);
     this.contacts = this.contactsCol.valueChanges();
   }
+
+  deleteContact(contactId){
+    this.afs.doc('contacts/'+ contactId).delete();
+  }
 }
