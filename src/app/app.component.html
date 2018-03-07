@@ -11,20 +11,25 @@
 <input type="submit" value="Add a Contact" (click)="addContact()">
 
 <ul *ngFor="let contact of contacts | async">
-  <li>
-    <strong>{{ contact.firstName}} {{ contact.secondName }}</strong>
+  <li (click)='getContact(contact.id)'>
+    <strong>{{ contact.data.firstName}} {{ contact.data.secondName }}</strong>
     <br>
-    {{contact.phoneNum}}
+    {{contact.data.phoneNum}}
     <br>
-    {{contact.mobileNum}}
+    {{contact.data.mobileNum}}
     <br>
-    {{contact.email}}
+    {{contact.data.email}}
     <br>
-    <p>{{contact.homeAddress}}, 
-      {{ contact.streetName }}, 
-      {{ contact.city }}, 
-      {{ contact.province }}, 
-      {{ contact.country }};
+    <p>{{contact.data.homeAddress}}, 
+      {{ contact.data.streetName }}, 
+      {{ contact.data.city }}, 
+      {{ contact.data.province }}, 
+      {{ contact.data.country }};
     </p>
   </li>
 </ul>
+
+<h1>A specific contact:</h1>
+
+  <h3>{{ (singleContact | async)?.firstName }} {{ (singleContact | async)?.secondName }}</h3>
+  <p>{{ (singlePost | async)?.phoneNum }}</p>

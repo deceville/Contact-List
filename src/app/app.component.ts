@@ -16,6 +16,10 @@ interface Contact {
   country: string;
 }
 
+interface ContactId extends Contact{
+  id: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -24,7 +28,9 @@ interface Contact {
 export class AppComponent {
 
   contactsCol: AngularFirestoreCollection<Contact>;
-  contacts: Observable<Contact[]>;
+  contacts: any;
+  contactDoc: AngularFirestoreDocument<Contact>;
+  contact: Observable<Contact>;
 
   firstName: string;
   secondName: string;
@@ -42,9 +48,22 @@ export class AppComponent {
   ngOnInit() {
     this.contactsCol = this.afs.collection('contacts');
     this.contacts = this.contactsCol.valueChanges();
+    this.contacts = this.contactsCol.snapshotChanges()
+      .map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as Contact;
+          const id = a.payload.doc.id;
+          return { id, data };
+        });
+      });
   }
 
   addContact(){
     this.afs.collection('contacts').doc('contact-id').set({'firstName': this.firstName, 'secondName': this.secondName, 'phoneNum': this.phoneNum, 'mobileNum': this.mobileNum, 'email': this.email, 'homeAddress': this.homeAddress, 'streetName': this.streetName, 'city': this.city, 'province': this.province, 'country': this.country, });
+  }
+
+  getContact(contactId){
+    this.contactDoc = this.afs.doc('contacts/' + contactId);
+    this.contacts = this.contactsCol.valueChanges();
   }
 }
