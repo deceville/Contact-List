@@ -1,7 +1,30 @@
+<input type="text" [(ngModel)]="firstName" name="firstName" placeholder="First name">
+<input type="text" [(ngModel)]="secondName" name="secondName" placeholder="Second name">
+<input type="text" [(ngModel)]="phoneNum" name="phoneNum" placeholder="Phone number">
+<input type="text" [(ngModel)]="mobileNum" name="mobileNum" placeholder="Mobile number">
+<input type="text" [(ngModel)]="email" name="email" placeholder="Email address">
+<input type="text" [(ngModel)]="homeAddress" name="homeAddress" placeholder="Home address">
+<input type="text" [(ngModel)]="streetName" name="streetName" placeholder="Street name">
+<input type="text" [(ngModel)]="city" name="city" placeholder="City">
+<input type="text" [(ngModel)]="province" name="province" placeholder="Province">
+<input type="text" [(ngModel)]="country" name="country" placeholder="Country">
+<input type="submit" value="Add a Contact" (click)="addContact()">
+
 <ul *ngFor="let contact of contacts | async">
   <li>
-    <strong>{{ contact.firstName}}</strong>
+    <strong>{{ contact.firstName}} {{ contact.secondName }}</strong>
+    <br>
+    {{contact.phoneNum}}
+    <br>
+    {{contact.mobileNum}}
     <br>
     {{contact.email}}
+    <br>
+    <p>{{contact.homeAddress}}, 
+      {{ contact.streetName }}, 
+      {{ contact.city }}, 
+      {{ contact.province }}, 
+      {{ contact.country }};
+    </p>
   </li>
 </ul>
